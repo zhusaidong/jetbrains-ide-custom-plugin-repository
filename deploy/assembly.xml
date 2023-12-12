@@ -1,0 +1,42 @@
+<assembly xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/ASSEMBLY/2.1.0"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0 http://maven.apache.org/xsd/assembly-2.1.0.xsd">
+
+    <id>bin</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <fileSets>
+        <!-- 从目标目录拷贝文件去压缩 -->
+        <fileSet>
+            <directory>target/res</directory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+            <outputDirectory>/lib</outputDirectory>
+        </fileSet>
+
+        <!-- 从源目录拷贝文件去压缩 -->
+        <fileSet>
+            <directory>deploy/scripts</directory>
+            <includes>
+                <include>*.sh</include>
+            </includes>
+            <outputDirectory>/bin</outputDirectory>
+            <fileMode>0755</fileMode>
+            <!-- 是否进行变量属性替换 -->
+            <filtered>true</filtered>
+        </fileSet>
+        <fileSet>
+            <directory>deploy/config</directory>
+            <outputDirectory>/config</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>deploy/</directory>
+            <includes>
+                <include>README.md</include>
+            </includes>
+            <outputDirectory>/</outputDirectory>
+            <filtered>true</filtered>
+        </fileSet>
+    </fileSets>
+</assembly>

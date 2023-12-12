@@ -1,0 +1,21 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+logging:
+  file:
+    path: ./logs
+
+cn:
+  zhusaidong:
+    idea:
+      plugins:
+        repositories:
+          store-type: local
+          local:
+            host: http://127.0.0.1:${server.port}/files/plugins/
+            plugin-dir: plugins/

@@ -21,6 +21,9 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/admin/**")
+                .addResourceLocations("classpath:/admin/");
+
         Optional.ofNullable(localProperties)
                 .map(LocalProperties::getPluginDir)
                 .map(File::new)

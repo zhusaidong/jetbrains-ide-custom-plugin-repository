@@ -18,6 +18,8 @@
 
 ### 源码编译
 
+`cd vue; npm install; npm run build`
+
 `mvn clean package -DskipTests`
 
 会得到一个压缩包`idea-plugins-repositories-0.0.1-SNAPSHOT.zip`,上传到服务器。

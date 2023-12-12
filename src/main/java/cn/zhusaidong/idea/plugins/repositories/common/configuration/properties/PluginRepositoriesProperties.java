@@ -16,6 +16,8 @@ import static cn.zhusaidong.idea.plugins.repositories.common.configuration.Const
 @ConfigurationProperties(prefix = PROPERTIES_PREFIX)
 public class PluginRepositoriesProperties {
     private StoreTypeEnum storeType;
+    private String username;
+    private String password;
 
     //todo 需要根据storeType返回对应Properties
 }

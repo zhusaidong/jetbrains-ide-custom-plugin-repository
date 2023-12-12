@@ -7,7 +7,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.util.Optional;
 
+/**
+ * web配置类
+ *
+ * @author zhusaidong
+ */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     @Resource
@@ -15,16 +21,13 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/admin/**")
-                .addResourceLocations("classpath:/admin/");
-
-        if (localProperties != null && localProperties.getPluginDir() != null) {
-            File file = new File(localProperties.getPluginDir());
-            if (file.exists()) {
-                String absolutePath = file.getAbsolutePath();
-                registry.addResourceHandler("/files/plugins/**")
-                        .addResourceLocations("file:" + absolutePath + "/");
-            }
-        }
+        Optional.ofNullable(localProperties)
+                .map(LocalProperties::getPluginDir)
+                .map(File::new)
+                .filter(File::exists)
+                .ifPresent(file ->
+                        registry.addResourceHandler(LocalProperties.PLUGIN_PATH + "/**")
+                                .addResourceLocations("file:" + file.getAbsolutePath() + "/")
+                );
     }
 }

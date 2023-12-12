@@ -13,9 +13,7 @@ CONF_DIR=$DEPLOY_DIR/config
 LOGS_DIR=$DEPLOY_DIR/logs
 STDOUT_FILE=$LOGS_DIR/stdout.log
 JAR_LIB_DIR=lib
-CONFIG_FILES=" -Dspring.config.additional-location=$CONF_DIR/
--Dspring.profiles.active=deploy
--Djava.ext.dirs=$JAR_LIB_DIR"
+CONFIG_FILES=" -Dspring.config.additional-location=$CONF_DIR/ -Djava.ext.dirs=$JAR_LIB_DIR"
 
 PID=$(ps -f | grep java | grep "$JAR_NAME" |awk '{print $2}')
 if [ "$1" = "status" ]; then
@@ -38,7 +36,7 @@ if [ ! -d "$LOGS_DIR" ]; then
   mkdir "$LOGS_DIR"
 fi
 
-JAVA_MEM_OPTS=" -server -Xms1024m -Xmx1024m
+JAVA_MEM_OPTS=" -server -Xms128m -Xmx128m
 -XX:+PrintGCDetails
 -XX:+PrintGCDateStamps
 -XX:+PrintTenuringDistribution

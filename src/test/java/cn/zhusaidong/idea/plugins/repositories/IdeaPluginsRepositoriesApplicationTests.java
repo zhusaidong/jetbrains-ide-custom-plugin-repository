@@ -24,6 +24,6 @@ class IdeaPluginsRepositoriesApplicationTests {
     void testGetPluginInfo() {
         String path = "plugins/MybatisCodeHelperMarketPlaceNew-3.2.5.zip";
         IdeaPluginXml ideaPluginXml = PluginXmlUtil.getPluginInfo(path);
-        System.out.println(ideaPluginXml);
+        Assert.notNull(ideaPluginXml, "获取不到xml数据");
     }
 }

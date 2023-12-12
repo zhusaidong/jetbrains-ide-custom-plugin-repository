@@ -16,6 +16,8 @@ import static cn.zhusaidong.idea.plugins.repositories.common.configuration.Const
 @ConditionalOnProperty(prefix = PROPERTIES_PREFIX, value = "store-type", havingValue = "local")
 @ConfigurationProperties(prefix = PROPERTIES_PREFIX + ".local")
 public class LocalProperties {
+    public static final String PLUGIN_PATH = "/files/plugins";
+    
     private String host;
     private String pluginDir;
 }

@@ -17,5 +17,5 @@ cn:
         repositories:
           store-type: local
           local:
-            host: http://127.0.0.1:${server.port}/files/plugins/
+            host: http://127.0.0.1:${server.port}
             plugin-dir: plugins/

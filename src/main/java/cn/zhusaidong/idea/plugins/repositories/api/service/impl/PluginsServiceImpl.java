@@ -51,7 +51,7 @@ public class PluginsServiceImpl implements PluginsService {
         PluginXml pluginXml = new PluginXml();
 
         BeanUtils.copyProperties(ideaPluginXml, pluginXml);
-        pluginXml.setUrl(localProperties.getHost() + fileName);
+        pluginXml.setUrl(localProperties.getHost() + LocalProperties.PLUGIN_PATH + fileName);
 
         ///todo 系统计算的评分信息
         //pluginXml.setRating("5");

@@ -3,9 +3,6 @@ package cn.zhusaidong.idea.plugins.repositories.common.xml;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import lombok.Data;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-
 /**
  * 付费插件描述
  * <p>
@@ -16,7 +13,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
  * @since 2023/12/7
  */
 @Data
-@XmlAccessorType(value = XmlAccessType.FIELD)
 public class ProductDescriptorXml {
     /**
      * The plugin product code used in the JetBrains Sales System.

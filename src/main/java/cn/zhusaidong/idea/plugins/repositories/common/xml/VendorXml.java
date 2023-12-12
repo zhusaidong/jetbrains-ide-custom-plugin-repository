@@ -4,9 +4,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
 import lombok.Data;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-
 /**
  * 插件作者信息
  *
@@ -14,7 +11,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
  * @since 2023/12/6
  */
 @Data
-@XmlAccessorType(value = XmlAccessType.FIELD)
 public class VendorXml {
     /**
      * The vendor's email address.

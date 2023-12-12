@@ -22,13 +22,14 @@
 
 会得到一个压缩包`idea-plugins-repositories-0.0.1-SNAPSHOT.zip`,上传到服务器。
 
-你也可以[直接从这下载](https://gitee.com/zsdroid/jetbrains_ides_plugins_repositories/releases/)编译好的软件包
+你也可以[直接从这下载](https://github.com/zhusaidong/jetbrains-ide-custom-plugin-repository/releases/latest)编译好的软件包
 
 ### 部署
 
 第一步：当前完成了版本1，部署时需要修改配置文件：`config/application.properties`
 
 配置文件：
+
 ```properties
 # 端口配置，默认8080
 server.port=8101

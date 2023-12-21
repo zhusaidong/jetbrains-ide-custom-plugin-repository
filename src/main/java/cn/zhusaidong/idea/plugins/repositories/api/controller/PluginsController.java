@@ -22,7 +22,7 @@ public class PluginsController {
     @Resource
     private PluginsService pluginsService;
 
-    @GetMapping(value = {"/","/plugins/updatePlugins.xml"}, produces = "application/xml")
+    @GetMapping(value = {"/", "/plugins/updatePlugins.xml"}, produces = "application/xml")
     public PluginsXml updatePlugins(String build) {
         log.info("updatePlugins=>build={}", build);
 

@@ -1,9 +1,12 @@
 package cn.zhusaidong.idea.plugins.repositories.admin.controller;
 
+import cn.zhusaidong.idea.plugins.repositories.admin.domain.Response;
+import cn.zhusaidong.idea.plugins.repositories.admin.domain.dto.IdeaPluginDTO;
 import cn.zhusaidong.idea.plugins.repositories.admin.util.PluginXmlUtil;
 import cn.zhusaidong.idea.plugins.repositories.common.configuration.properties.store.LocalProperties;
 import cn.zhusaidong.idea.plugins.repositories.common.xml.IdeaPluginXml;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,13 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 /**
  * @author zhusaidong
  * @since 2023/12/6
  */
 @RestController
-@RequestMapping("/admin/plugin")
+@RequestMapping(value = "/admin/plugin", produces = "application/json")
 @Slf4j
 public class AdminPluginController {
     public static Map<String, IdeaPluginXml> ideaPluginXmlMap = new ConcurrentHashMap<>();
@@ -68,5 +72,32 @@ public class AdminPluginController {
         }
 
         return String.format("发现%s个新插件：%s", newPluginList.size(), String.join(",", newPluginList));
+    }
+
+    @GetMapping("/list")
+    public Response<List<IdeaPluginDTO>> list() {
+        List<IdeaPluginDTO> list = ideaPluginXmlMap.values().stream()
+                .map(ideaPluginXml -> {
+                    IdeaPluginDTO ideaPluginDTO = new IdeaPluginDTO();
+                    BeanUtils.copyProperties(ideaPluginXml, ideaPluginDTO);
+                    return ideaPluginDTO;
+                }).peek(ideaPluginDTO -> {
+                    ideaPluginDTO.setChangeNotes(null);
+                    ideaPluginDTO.setDescription(null);
+                }).collect(Collectors.toList());
+        return Response.success(list);
+    }
+
+    @GetMapping("/get")
+    public Response<IdeaPluginDTO> get(String pluginId) {
+        IdeaPluginDTO dto = ideaPluginXmlMap.values().stream()
+                .map(ideaPluginXml -> {
+                    IdeaPluginDTO ideaPluginDTO = new IdeaPluginDTO();
+                    BeanUtils.copyProperties(ideaPluginXml, ideaPluginDTO);
+                    return ideaPluginDTO;
+                })
+                .filter(ideaPluginDTO -> ideaPluginDTO.getId().equals(pluginId))
+                .findAny().orElse(null);
+        return Response.success(dto);
     }
 }

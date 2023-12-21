@@ -22,6 +22,9 @@ export default defineConfig(({mode}) => {
         plugins: [
             vue(),
             AutoImport({
+                imports: [
+                    'vue'
+                ],
                 resolvers: [ElementPlusResolver()],
             }),
             Components({
